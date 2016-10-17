@@ -1,0 +1,25 @@
+<apex:page standardController="Event_Relationship__c" standardStylesheets="false"  renderAs="pdf" applyBodyTag="false">
+<apex:stylesheet value="{!URLFOR($Resource.styles, 'styles.css')}" />
+    <head></head>
+    <body>
+        <center>
+        <h1>Payment Receipt</h1>
+     
+        <apex:panelGrid columns="2" border="2" width="100%"> 
+        
+          <apex:outputText value="{!$ObjectType.Event_Relationship__c.Fields.Event_ID__c.label}" />
+              <apex:outputField value="{!Event_Relationship__c.Event_ID__c}"/>
+              
+               <apex:outputText value="{!$ObjectType.Event_Relationship__c.Fields.Contributor_ID__c.label}" />
+            <apex:outputfield value="{!Event_Relationship__c.Contributor_ID__c}"/>
+         
+            <apex:outputText value="{!$ObjectType.Event_Relationship__c.Fields.Contributed_Money__c.label}"/>
+            <apex:outputText value="{!Event_Relationship__c.Contributed_Money__c}" />
+           
+            <apex:outputText value="Transaction Time & Date"/>
+            <apex:outputText value="{!NOW()}"></apex:outputText>
+      </apex:panelGrid>  
+        </center>
+    </body>
+    
+</apex:page>

@@ -1,0 +1,21 @@
+<!-- This Page(Email Template) is used to  send a mail with an attachment of contribution receipt (in pdf) when a contribution is
+ given towards an event. -->
+<messaging:emailTemplate subject="Invoice Details" recipientType="User" relatedToType="Event_Relationship__c">
+<messaging:attachment renderAs="PDF" filename="Invoice.pdf">
+    <html>
+        <head/>
+        <body>
+        <!-- Fetching data from "Event_Relationship__c" and "Contributer__c" objects  -->
+            Hi Thank U for the Contribution in Event {!relatedTo.Event_ID__r.Event_Name__c} <br/> <br/> 
+            Event Name:   {!relatedTo.Event_ID__r.Event_Name__c} <br/> <br/> 
+            Event Date:   {!relatedTo.Event_ID__r.Event_Date__c} <br/> <br/>
+            Contributer Name :  {!relatedTo.Contributor_ID__r.First_Name__c} {!relatedTo.Contributor_ID__r.Last_Name__c} <br/> <br/>
+            Contributed Amount :  {!relatedTo.Contributed_Money__c} <br/> <br/>
+        </body>
+    </html>
+</messaging:attachment>
+<messaging:plainTextEmailBody >
+Congratulations {!relatedTo.Contributor_ID__r.First_Name__c} {!relatedTo.Contributor_ID__r.Last_Name__c}
+
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

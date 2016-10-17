@@ -1,0 +1,57 @@
+<!-- This Page is showing the total expenditure of a particular event as well as it is showing each members contribution towards a particular event in a PDF format. -->
+
+<apex:page standardController="Event__c" standardStylesheets="false" renderAs="pdf" applyBodyTag="false" extensions="ContributerList">
+<apex:stylesheet value="{!URLFOR($Resource.styles, 'styles.css')}" />
+    <head/>
+  
+    <body>
+        <center>
+        <h1 style="font-size:30px;"><u>Contribution Money Receipt!</u></h1>
+     
+     <apex:panelGrid columns="2" border="2" width="100%"> 
+            <!-- Fetching Data from "Event__c" Object  -->
+           
+          <apex:outputText value="{!$ObjectType.Event__c.Fields.Event_Name__c.label}" />
+              <apex:outputField value="{!Event__c.Event_Name__c}"/>
+              
+           
+            <apex:outputText value="{!$ObjectType.Event__c.Fields.Event_Description__c.label}"/>
+              <apex:outputField value="{!Event__c.Event_Description__c}"/>
+              
+               <apex:outputText value="{!$ObjectType.Event__c.Fields.Event_Name__c.label}" />
+              <apex:outputField value="{!Event__c   .Event_Name__c}"/>
+              
+               <apex:outputText value="{!$ObjectType.Event__c.Fields.Amount__c.label}" />
+            <apex:outputfield value="{!Event__c.Amount__c}"/>
+         
+            <apex:outputText value="{!$ObjectType.Event__c.Fields.Contributed_Money__c.label}" />
+            <apex:outputText value="{!Event__c.Contributed_Money__c}" />
+           
+               <apex:outputText value="{!$ObjectType.Event__c.Fields.Event_Date__c.label}" />
+            <apex:outputText value="{!Event__c.Event_Date__c}" />
+           
+            </apex:panelGrid>  
+        </center>
+        <!-- Table structure for the contribution from the each contributers towards this event -->
+         <br/> 
+          
+          <h1 style="font-size:25px;"><u>Total Contribution Details</u></h1>
+          <br/>
+          <center> 
+            <table border="2"  width="100%">
+             <tr>
+                <td style="font-size:15px;"><u> Contributer Name</u></td>
+                <td style="font-size:15px;"><u> Contributed Amount</u></td>
+             </tr>
+             <!-- Fetching data in a List from Extension Apex Class "ContributerList". -->    
+      
+            <apex:repeat value="{!everel}" var="i">
+             <tr>
+                 <td> {!i.Contributor_ID__r.First_Name__c}</td>
+                 <td> {!i.Contributed_Money__c}</td>
+             </tr>    
+            </apex:repeat>  
+            </table>
+            </center>
+    </body>
+</apex:page>
